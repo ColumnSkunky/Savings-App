@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:currency_textfield/currency_textfield.dart';
 
 class InputSpending extends StatefulWidget {
   const InputSpending({super.key, required this.title});
@@ -52,10 +51,5 @@ class _InputSpendingState extends State<InputSpending> {
   );
   }
 
-
-  void _sendDataBack(BuildContext context) {
-    int textToSendBack = expenses;
-    Navigator.pop(context, textToSendBack);
-  }
 }
 

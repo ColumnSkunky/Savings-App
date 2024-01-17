@@ -50,9 +50,4 @@ class _InputWageState extends State<InputWage> {
     );
   }
 
-
-  void _sendDataBack(BuildContext context) {
-    int result = earnings;
-    Navigator.pop(context, result);
-  }
 }

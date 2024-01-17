@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'input_spending.dart';
 import 'input_avg_wage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -36,9 +39,28 @@ class _MyHomePageState extends State<MyHomePage> {
   int earnings = 0;
 
   @override
+  void initState() {
+    super.initState();
+    _loadMoney();
+  }
+  Future<void> _loadMoney() async {
+    final prefs = await SharedPreferences.getInstance();
+    if(!prefs.containsKey('money')){
+      return;
+    }
+    setState(() {
+    money = prefs.getInt('money') !;
+    });
+  }
+
+  Future<void> _saveMoney() async {
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('money', money);
+  }
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( title: Text('Piggy Banking'),
+      appBar: AppBar( title: Text('Bringing The Bacon'),
         backgroundColor: Theme
             .of(context)
             .colorScheme
@@ -68,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                     _awaitReturnValueFromEarnings(context);
-                    money = money + earnings;
+
               },
               child: Text(
                   'Earnings'
@@ -80,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 _awaitReturnValueFromExpense(context);
-                money = money - expense;
+
               },
               child: Text(
                   'Expenses'
@@ -103,6 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       expense = result;
     });
+    money = money - expense;
+    _saveMoney();
   }
   void _awaitReturnValueFromEarnings(BuildContext context) async {
     // start the SecondScreen and wait for it to finish with a result
@@ -114,6 +138,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       earnings = result;
     });
+    money = money + earnings;
+    _saveMoney();
   }
 }
 
