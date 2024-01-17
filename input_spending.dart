@@ -31,7 +31,14 @@ class _InputSpendingState extends State<InputSpending> {
   children: <Widget>[
   const Text(
   'Input Total Expenses(rounded to the nearest dollar):',
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+      )
   ),
+    SizedBox(
+      width : 200,
+      child:
   TextField(
   keyboardType: const TextInputType.numberWithOptions(),
   inputFormatters: <TextInputFormatter>[
@@ -41,6 +48,7 @@ class _InputSpendingState extends State<InputSpending> {
   expenses = int.parse(value);
   }
   ),
+    ),
   ElevatedButton(
   child: Text('Submit'),
   onPressed: () => Navigator.of(context).pop(expenses),

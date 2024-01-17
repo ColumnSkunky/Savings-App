@@ -28,11 +28,18 @@ class _InputWageState extends State<InputWage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+           Text(
               'Input Total Earnings(rounded to the nearest dollar):',
+             style: TextStyle(
+             fontSize: 15,
+               fontWeight: FontWeight.bold,
+             )
             ),
-            TextField(
+            SizedBox(
+              width : 200,
+           child: TextField(
               keyboardType: const TextInputType.numberWithOptions(),
+
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,
               ],
@@ -40,11 +47,14 @@ class _InputWageState extends State<InputWage> {
                 earnings = int.parse(value);
                 }
                 ),
+            ),
             ElevatedButton(
                 child: Text('Submit'),
               onPressed: () => Navigator.of(context).pop(earnings),
             ),
+
           ],
+
         ),
       ),
     );
