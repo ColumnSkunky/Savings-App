@@ -1,6 +1,6 @@
 The project seeks to help people by forcing them to interact with their spending habits acting as a log of how much you've spent/earned
 
-run it in a flutter file and everything provided is in the library folder. 
+run it in a flutter project and everything provided should be put in the library folder. 
 
 Main.dart has a basic UI with simply 2 buttons that take you to two screens either expenses or earnings
 
